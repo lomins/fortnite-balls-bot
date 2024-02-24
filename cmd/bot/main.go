@@ -46,7 +46,7 @@ func main() {
 
 			msg := strings.ToLower(update.Message.Text)
 
-			if fortniteWords[msg] {
+			if strings.Contains(msg, "фортнайт") || strings.Contains(msg, "fortnite") || fortniteWords[msg] {
 				video := tgbotapi.NewVideo(update.Message.Chat.ID, tgbotapi.FilePath("video.mp4"))
 				// video.Thumb = tgbotapi.FilePath("thumb.mp4")
 
