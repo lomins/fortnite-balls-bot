@@ -54,8 +54,8 @@ func main() {
 				vadimHandler(bot, update)
 			case strings.Contains(msg, "god") || strings.Contains(msg, " гад"):
 				ohMyGodHandler(bot, update)
-			case strings.Contains(msg, "satoru") || strings.Contains(msg, " сатору") ||
-				strings.Contains(msg, "годжо") || strings.Contains(msg, " godzo"):
+			case strings.Contains(msg, "satoru") || strings.Contains(msg, "сатору") ||
+				strings.Contains(msg, "годжо") || strings.Contains(msg, "godzo"):
 				godzoHandler(bot, update)
 			}
 		}
