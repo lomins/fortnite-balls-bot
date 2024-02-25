@@ -21,11 +21,6 @@ func main() {
 		log.Panic(err)
 	}
 
-	fortniteWords := map[string]bool{
-		"фортнайт боллс": true,
-		"фортнайт болс":  true,
-	}
-
 	vlatWords := map[string]bool{
 		"влат":  true,
 		"влат)": true,
@@ -46,26 +41,59 @@ func main() {
 
 			msg := strings.ToLower(update.Message.Text)
 
-			if strings.Contains(msg, "фортнайт") || strings.Contains(msg, "fortnite") || fortniteWords[msg] {
-				video := tgbotapi.NewVideo(update.Message.Chat.ID, tgbotapi.FilePath("video.mp4"))
-				// video.Thumb = tgbotapi.FilePath("thumb.mp4")
-
-				_, err := bot.Send(video)
-				if err != nil {
-					log.Println("error sending video:", err)
-				}
-			} else if strings.Contains(msg, "влат") || vlatWords[msg] {
-				text := "Влат)"
-
-				for i := 0; i < rand.Intn(50); i++ {
-					text += ")"
-				}
-
-				msg := tgbotapi.NewMessage(update.Message.Chat.ID, text)
-
-				bot.Send(msg)
+			switch {
+			case strings.Contains(msg, "фортнайт") || strings.Contains(msg, "fortnite"):
+				fortniteHandler(bot, update)
+				fallthrough
+			case strings.Contains(msg, "влат") || vlatWords[msg]:
+				vlatHandler(bot, update)
+				fallthrough
+			case strings.Contains(msg, "judlemain") || strings.Contains(msg, "саня"):
+				sanyaHandler(bot, update)
+				fallthrough
+			case strings.Contains(msg, "вадим") || strings.Contains(msg, "Ebatel_mamok_2014"):
+				vadimHandler(bot, update)
 			}
 		}
+	}
+}
+
+func fortniteHandler(bot *tgbotapi.BotAPI, update tgbotapi.Update) {
+	video := tgbotapi.NewVideo(update.Message.Chat.ID, tgbotapi.FilePath("video.mp4"))
+	// video.Thumb = tgbotapi.FilePath("thumb.mp4")
+
+	_, err := bot.Send(video)
+	if err != nil {
+		log.Println("error sending video:", err)
+	}
+}
+
+func vlatHandler(bot *tgbotapi.BotAPI, update tgbotapi.Update) {
+	text := "Влат)"
+
+	for i := 0; i < rand.Intn(50); i++ {
+		text += ")"
+	}
+
+	msg := tgbotapi.NewMessage(update.Message.Chat.ID, text)
+
+	bot.Send(msg)
+}
+
+func sanyaHandler(bot *tgbotapi.BotAPI, update tgbotapi.Update) {
+	text := "К Саньку?"
+
+	msg := tgbotapi.NewMessage(update.Message.Chat.ID, text)
+
+	bot.Send(msg)
+}
+
+func vadimHandler(bot *tgbotapi.BotAPI, update tgbotapi.Update) {
+	photo := tgbotapi.NewPhoto(update.Message.Chat.ID, tgbotapi.FilePath("vadimHuy.jpg"))
+
+	_, err := bot.Send(photo)
+	if err != nil {
+		log.Println("error sending photo:", err)
 	}
 }
 
@@ -75,7 +103,3 @@ func init() {
 		log.Print("No .env file found")
 	}
 }
-
-// func randInt(min, max int) int {
-// 	return min + rand.Int(max-min)
-// }
