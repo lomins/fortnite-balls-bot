@@ -104,7 +104,7 @@ func vadimHandler(bot *tgbotapi.BotAPI, update tgbotapi.Update) {
 }
 
 func ohMyGodHandler(bot *tgbotapi.BotAPI, update tgbotapi.Update) {
-	num := rand.Intn(3)
+	num := rand.Intn(4)
 	filePath := "ohmygod" + strconv.Itoa(num) + ".ogg"
 	audio := tgbotapi.NewAudio(update.Message.Chat.ID, tgbotapi.FilePath(filePath))
 
