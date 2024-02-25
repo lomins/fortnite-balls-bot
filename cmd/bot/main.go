@@ -4,6 +4,7 @@ import (
 	"log"
 	"math/rand"
 	"os"
+	"regexp"
 	"strconv"
 	"strings"
 
@@ -41,6 +42,7 @@ func main() {
 			log.Printf("[%s] %s chID %d", update.Message.From.UserName, update.Message.Text, update.Message.Chat.ID)
 
 			msg := strings.ToLower(update.Message.Text)
+			re := regexp.MustCompile(" га*д")
 
 			switch {
 			case strings.Contains(msg, "фортнайт") || strings.Contains(msg, "fortnite"):
@@ -52,7 +54,7 @@ func main() {
 				sanyaHandler(bot, update)
 			case strings.Contains(msg, "вадим") || strings.Contains(msg, "Ebatel_mamok_2014"):
 				vadimHandler(bot, update)
-			case strings.Contains(msg, "god") || strings.Contains(msg, " гад"):
+			case strings.Contains(msg, "god") || strings.Contains(msg, " гад") || re.MatchString(msg):
 				ohMyGodHandler(bot, update)
 			case strings.Contains(msg, "satoru") || strings.Contains(msg, "сатору") ||
 				strings.Contains(msg, "годжо") || strings.Contains(msg, "godzo"):
