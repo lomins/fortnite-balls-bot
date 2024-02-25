@@ -42,7 +42,7 @@ func main() {
 			log.Printf("[%s] %s chID %d", update.Message.From.UserName, update.Message.Text, update.Message.Chat.ID)
 
 			msg := strings.ToLower(update.Message.Text)
-			re := regexp.MustCompile(" га*д")
+			re := regexp.MustCompile(" га+д")
 
 			switch {
 			case strings.Contains(msg, "фортнайт") || strings.Contains(msg, "fortnite"):
