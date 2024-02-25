@@ -52,8 +52,11 @@ func main() {
 				sanyaHandler(bot, update)
 			case strings.Contains(msg, "вадим") || strings.Contains(msg, "Ebatel_mamok_2014"):
 				vadimHandler(bot, update)
-			case strings.Contains(msg, "god") || strings.Contains(msg, "гад"):
+			case strings.Contains(msg, "god") || strings.Contains(msg, " гад"):
 				ohMyGodHandler(bot, update)
+			case strings.Contains(msg, "satoru") || strings.Contains(msg, " сатору") ||
+				strings.Contains(msg, "годжо") || strings.Contains(msg, " godzo"):
+				godzoHandler(bot, update)
 			}
 		}
 	}
@@ -106,6 +109,16 @@ func ohMyGodHandler(bot *tgbotapi.BotAPI, update tgbotapi.Update) {
 	_, err := bot.Send(audio)
 	if err != nil {
 		log.Println("error sending photo:", err)
+	}
+}
+
+func godzoHandler(bot *tgbotapi.BotAPI, update tgbotapi.Update) {
+	video := tgbotapi.NewVideo(update.Message.Chat.ID, tgbotapi.FilePath("satoru.mp4"))
+	// video.Thumb = tgbotapi.FilePath("thumb.mp4")
+
+	_, err := bot.Send(video)
+	if err != nil {
+		log.Println("error sending video:", err)
 	}
 }
 
