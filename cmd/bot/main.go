@@ -47,7 +47,8 @@ func main() {
 				fortniteHandler(bot, update)
 			case strings.Contains(msg, "влат") || vlatWords[msg]:
 				vlatHandler(bot, update)
-			case strings.Contains(msg, "judlemain") || strings.Contains(msg, "саня") || strings.Contains(msg, "сане"):
+			case strings.Contains(msg, "judlemain") || strings.Contains(msg, "саня") || strings.Contains(msg, "сане") ||
+				strings.Contains(msg, "сань"):
 				sanyaHandler(bot, update)
 			case strings.Contains(msg, "вадим") || strings.Contains(msg, "Ebatel_mamok_2014"):
 				vadimHandler(bot, update)
