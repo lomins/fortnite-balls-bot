@@ -52,7 +52,7 @@ func main() {
 				sanyaHandler(bot, update)
 			case strings.Contains(msg, "вадим") || strings.Contains(msg, "Ebatel_mamok_2014"):
 				vadimHandler(bot, update)
-			case strings.Contains(msg, "god") || strings.Contains(msg, "гад") || strings.Contains(msg, "ма"):
+			case strings.Contains(msg, "god") || strings.Contains(msg, "гад"):
 				ohMyGodHandler(bot, update)
 			}
 		}
