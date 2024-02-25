@@ -4,6 +4,7 @@ import (
 	"log"
 	"math/rand"
 	"os"
+	"strconv"
 	"strings"
 
 	tgbotapi "github.com/go-telegram-bot-api/telegram-bot-api/v5"
@@ -46,10 +47,12 @@ func main() {
 				fortniteHandler(bot, update)
 			case strings.Contains(msg, "влат") || vlatWords[msg]:
 				vlatHandler(bot, update)
-			case strings.Contains(msg, "judlemain") || strings.Contains(msg, "саня"):
+			case strings.Contains(msg, "judlemain") || strings.Contains(msg, "саня") || strings.Contains(msg, "сане"):
 				sanyaHandler(bot, update)
 			case strings.Contains(msg, "вадим") || strings.Contains(msg, "Ebatel_mamok_2014"):
 				vadimHandler(bot, update)
+			case strings.Contains(msg, "god") || strings.Contains(msg, "гад") || strings.Contains(msg, "ма"):
+				ohMyGodHandler(bot, update)
 			}
 		}
 	}
@@ -89,6 +92,17 @@ func vadimHandler(bot *tgbotapi.BotAPI, update tgbotapi.Update) {
 	photo := tgbotapi.NewPhoto(update.Message.Chat.ID, tgbotapi.FilePath("vadimHuy.jpg"))
 
 	_, err := bot.Send(photo)
+	if err != nil {
+		log.Println("error sending photo:", err)
+	}
+}
+
+func ohMyGodHandler(bot *tgbotapi.BotAPI, update tgbotapi.Update) {
+	num := rand.Intn(3)
+	filePath := "ohmygod" + strconv.Itoa(num) + ".ogg"
+	audio := tgbotapi.NewAudio(update.Message.Chat.ID, tgbotapi.FilePath(filePath))
+
+	_, err := bot.Send(audio)
 	if err != nil {
 		log.Println("error sending photo:", err)
 	}
