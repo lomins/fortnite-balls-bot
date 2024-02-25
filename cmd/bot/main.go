@@ -59,6 +59,8 @@ func main() {
 			case strings.Contains(msg, "satoru") || strings.Contains(msg, "сатору") ||
 				strings.Contains(msg, "годжо") || strings.Contains(msg, "godzo"):
 				godzoHandler(bot, update)
+			case strings.Contains(msg, "Карин") || strings.Contains(msg, "Karin"):
+				karinaHandler(bot, update)
 			}
 		}
 	}
@@ -121,6 +123,15 @@ func godzoHandler(bot *tgbotapi.BotAPI, update tgbotapi.Update) {
 	_, err := bot.Send(video)
 	if err != nil {
 		log.Println("error sending video:", err)
+	}
+}
+
+func karinaHandler(bot *tgbotapi.BotAPI, update tgbotapi.Update) {
+	audio := tgbotapi.NewAudio(update.Message.Chat.ID, tgbotapi.FilePath("druzhishe.ogg"))
+
+	_, err := bot.Send(audio)
+	if err != nil {
+		log.Println("error sending photo:", err)
 	}
 }
 
