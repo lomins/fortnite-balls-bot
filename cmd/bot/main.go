@@ -44,13 +44,10 @@ func main() {
 			switch {
 			case strings.Contains(msg, "фортнайт") || strings.Contains(msg, "fortnite"):
 				fortniteHandler(bot, update)
-				fallthrough
 			case strings.Contains(msg, "влат") || vlatWords[msg]:
 				vlatHandler(bot, update)
-				fallthrough
 			case strings.Contains(msg, "judlemain") || strings.Contains(msg, "саня"):
 				sanyaHandler(bot, update)
-				fallthrough
 			case strings.Contains(msg, "вадим") || strings.Contains(msg, "Ebatel_mamok_2014"):
 				vadimHandler(bot, update)
 			}
